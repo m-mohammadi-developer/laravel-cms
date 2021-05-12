@@ -7,11 +7,11 @@
             <div class="alert alert-warning">
                 {{ session('message') }}
             </div>
-            @elseif (session('post-create-message'))
+        @elseif (session('post-create-message'))
             <div class="alert alert-success">
                 {{ session('post-create-message') }}
             </div>
-            @elseif (session('post-update-message'))
+        @elseif (session('post-update-message'))
             <div class="alert alert-success">
                 {{ session('post-update-message') }}
             </div>
@@ -55,7 +55,8 @@
                                     <td>{{ $post->user->name }}
                                     </td>
                                     <td>
-                                        <a href="{{ route('post.edit', $post->id) }}" title="Edit The Post">{{ $post->title }}</a>
+                                        <a href="{{ route('post.edit', $post->id) }}"
+                                            title="Edit The Post">{{ $post->title }}</a>
                                     </td>
                                     <td>
                                         <img width="100px" src="{{ asset($post->post_image) }}" alt="">
@@ -74,10 +75,15 @@
                             @endforeach
                         </tbody>
                     </table>
+
+                   
                 </div>
             </div>
         </div>
-
+        
+        <div class="d-flex">
+            <div class="mx-auto">{{ $posts->links() }}</div>
+        </div>
 
     @endsection
 
@@ -89,7 +95,7 @@
         <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
         <!-- Page level custom scripts -->
-        <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
+        {{-- <script src="{{ asset('js/demo/datatables-demo.js') }}"></script> --}}
 
 
     @endsection
