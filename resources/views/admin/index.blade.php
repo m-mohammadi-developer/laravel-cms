@@ -1,9 +1,11 @@
 <x-admin-master>
 
-    @section('content')
+    @if(auth()->user()->userHasRole('Admin'))
+        @section('content')
 
-        <h1 class="h3 mb-4 text-gray-800">Admin Dashboard</h1>
+            <h1 class="h3 mb-4 text-gray-800">Admin Dashboard</h1>
 
-    @endsection
+        @endsection
+    @endif
 
 </x-admin-master>
