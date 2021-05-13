@@ -38,7 +38,7 @@ class PostController extends Controller
         ]);
 
         if ($request->has('post_image')) {
-            $inputs['post_image'] = 'storage/' . $request->post_image->store('images');
+            $inputs['post_image'] = '/storage/' . $request->post_image->store('images');
         }
 
         auth()->user()->posts()->create($inputs);
