@@ -10,7 +10,7 @@
                 @method('PUT')
 
                 <div class="mb-4 d-flex justify-content-center">
-                    <img width="50%" class="img-profile rounded-circle" src="{{ $user->avatar }}" alt="avatar">
+                    <img width="50%" class="img-profile rounded-circle" src="{{ asset(auth()->user()->avatar) }}" alt="avatar">
                 </div>
                 <div class="form-group">   
                     <label for="name">Avatar</label>

@@ -72,9 +72,11 @@ class PostController extends Controller
         ]);
 
         if ($request->has('post_image')) {
-            if (Storage::exists($post->post_image)) {
-                Storage::delete($post->post_image);
+            // delete last image
+            if (Storage::exists($post->getRawOriginal('post_image'))) {
+                Storage::delete($post->getRawOriginal('post_image'));
             }
+            // upload new image
             $inputs['post_image'] = $request->post_image->store('images');
             $post->post_image = $inputs['post_image']; 
         }
@@ -95,8 +97,8 @@ class PostController extends Controller
     {
         $this->authorize('delete', $post);
         
-        if (Storage::exists($post->post_image)) {
-            Storage::delete($post->post_image);
+        if (Storage::exists($post->getRawOriginal('post_image'))) {
+            Storage::delete($post->getRawOriginal('post_image'));
         }
         $post->delete();
         // Session::flash('message', 'Post Was Deleted');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -28,7 +29,10 @@ class UserController extends Controller
         
         
         if ($request->has('avatar')) {
-            $inputs['avatar'] =  '/storage/' . $request->avatar->store('images');
+            if (Storage::exists($user->getRawOriginal('avatar'))) {
+                Storage::delete($user->getRawOriginal('avatar'));
+            }
+            $inputs['avatar'] = $request->avatar->store('images');
         }
 
         $user->update($inputs);
