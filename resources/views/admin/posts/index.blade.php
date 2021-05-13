@@ -58,8 +58,8 @@
                                         <a href="{{ route('post.edit', $post->id) }}"
                                             title="Edit The Post">{{ $post->title }}</a>
                                     </td>
-                                    <td>
-                                        <img width="100px" src="{{ asset($post->post_image) }}" alt="">
+                                    <td class="d-flex justify-content-center">
+                                        <img width="100px" src="{{ asset('storage/' .$post->post_image) }}" alt="">
                                     </td>
                                     <td>{{ $post->created_at->diffForHumans() }}</td>
                                     <td>{{ $post->updated_at->diffForHumans() }}</td>

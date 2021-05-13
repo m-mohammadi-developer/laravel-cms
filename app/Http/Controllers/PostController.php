@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -12,7 +13,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = auth()->user()->posts()->paginate(5);
-
+        
         return view('admin.posts.index', ['posts' => $posts]);
     }
 
@@ -38,7 +39,7 @@ class PostController extends Controller
         ]);
 
         if ($request->has('post_image')) {
-            $inputs['post_image'] = '/storage/' . $request->post_image->store('images');
+            $inputs['post_image'] = $request->post_image->store('images');
         }
 
         auth()->user()->posts()->create($inputs);
@@ -71,8 +72,11 @@ class PostController extends Controller
         ]);
 
         if ($request->has('post_image')) {
-            $inputs['post_image'] = 'storage/' . $request->post_image->store('images');
-            $post->post_image = $inputs['post_image'];
+            if (Storage::exists($post->post_image)) {
+                Storage::delete($post->post_image);
+            }
+            $inputs['post_image'] = $request->post_image->store('images');
+            $post->post_image = $inputs['post_image']; 
         }
         $post->title = $inputs['title'];
         $post->body = $inputs['body'];
@@ -90,8 +94,11 @@ class PostController extends Controller
     public function destroy(Post $post, Request $request)
     {
         $this->authorize('delete', $post);
+        
+        if (Storage::exists($post->post_image)) {
+            Storage::delete($post->post_image);
+        }
         $post->delete();
-
         // Session::flash('message', 'Post Was Deleted');
         $request->session()->flash('message', 'Post Was Deleted');
 
