@@ -59,9 +59,9 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
 
-            <x-admin-sidebar-posts-link />
+            <x-admin.sidebar.posts-links />
             @if (auth()->user()->userHasRole('Admin'))
-                <x-admin-sidebar-users-link />
+                <x-admin.sidebar.users-links />
             @endif
 
             <!-- Nav Item - Utilities Collapse Menu -->
@@ -309,7 +309,7 @@
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
-                        <x-admin-top-navbar-user-information />
+                        <x-admin.top-nav.user-information />
 
                     </ul>
 
