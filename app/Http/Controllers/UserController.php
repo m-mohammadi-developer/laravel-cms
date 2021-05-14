@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Storage;
 class UserController extends Controller
 {
 
+    public function index()
+    {
+        $users = User::all();
+        return view('admin.users.index', compact('users'));
+    }
+
 
     public function show(User $user)
     {
@@ -38,5 +44,14 @@ class UserController extends Controller
         $user->update($inputs);
         
         return redirect()->back();
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+        // session()->flash('success', 'User has been deleted');
+
+        return back()->with('success', 'User has been deleted');
     }
 }
