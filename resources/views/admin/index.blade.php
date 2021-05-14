@@ -1,4 +1,4 @@
-<x-admin-master>
+<x-admin.master>
 
     @if(auth()->user()->userHasRole('Admin'))
         @section('content')
@@ -8,4 +8,4 @@
         @endsection
     @endif
 
-</x-admin-master>
+</x-admin.master>

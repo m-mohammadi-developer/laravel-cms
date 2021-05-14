@@ -1,4 +1,4 @@
-<x-admin-master>
+<x-admin.master>
     @section('content')
 
         @if (session('success'))
@@ -94,4 +94,4 @@
 
 
     @endsection
-</x-admin-master>
+</x-admin.master>

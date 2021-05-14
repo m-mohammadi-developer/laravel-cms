@@ -1,4 +1,4 @@
-<x-admin-master>
+<x-admin.master>
     @section('content') 
 
     <h1>User Profile for : {{ $user->name }}</h1>
@@ -96,4 +96,4 @@
         </div>
     </div>
     @endsection
-</x-admin-master>
+</x-admin.master>

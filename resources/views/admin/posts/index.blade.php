@@ -1,4 +1,4 @@
-<x-admin-master>
+<x-admin.master>
     @section('content')
 
         <h1>Posts For All</h1>
@@ -99,4 +99,4 @@
 
 
     @endsection
-</x-admin-master>
+</x-admin.master>

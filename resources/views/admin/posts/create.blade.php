@@ -1,4 +1,4 @@
-<x-admin-master>
+<x-admin.master>
     @section('content')
 
         <form method="post" action="{{ route('post.store') }}" enctype="multipart/form-data">
@@ -24,4 +24,4 @@
         </form>
 
     @endsection
-</x-admin-master>
+</x-admin.master>

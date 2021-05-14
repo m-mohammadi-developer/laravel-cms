@@ -1,4 +1,4 @@
-<x-admin-master>
+<x-admin.master>
     @section('content')
 
         <h1>Edit The Post</h1>
@@ -48,4 +48,4 @@
         </form>
 
     @endsection
-</x-admin-master>
+</x-admin.master>
