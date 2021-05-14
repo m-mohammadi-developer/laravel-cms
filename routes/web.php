@@ -22,11 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/posts/{post}/edit', 'PostController@edit')->name('post.edit');
 
     // users routes
-    Route::get('/admin/users/{user}/profile', 'UserController@show')->name('user.profile.show');
-    Route::put('/admin/users/{user}/update', 'UserController@update')->name('user.profile.update');
    
-
-
     Route::middleware('role:admin')->group(function () {
 
         Route::get('/admin/users', 'UserController@index')->name('users.index');
@@ -37,3 +33,10 @@ Route::middleware('auth')->group(function () {
     
 });
  
+
+Route::middleware(['auth', 'can:view,user'])->group(function () {
+
+    Route::get('/admin/users/{user}/profile', 'UserController@show')->name('user.profile.show');
+    Route::put('/admin/users/{user}/update', 'UserController@update')->name('user.profile.update');
+    
+});
