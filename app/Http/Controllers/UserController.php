@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +19,10 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        return view('admin.users.profile', ['user' => $user]);
+        return view('admin.users.profile', [
+            'user' => $user,
+            'roles' => Role::all(),
+            ]);
     }
 
     public function update(User $user, request $request)
@@ -53,5 +57,17 @@ class UserController extends Controller
         // session()->flash('success', 'User has been deleted');
 
         return back()->with('success', 'User has been deleted');
+    }
+
+    public function attachRole(User $user)
+    {
+        $user->roles()->attach(request('role'));
+        return back()->with('success', 'User Updated Successfuly');
+    }
+
+    public function detachRole(User $user)
+    {
+        $user->roles()->detach(request('role'));
+        return back()->with('success', 'User Updated Successfuly');
     }
 }
