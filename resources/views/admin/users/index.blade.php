@@ -1,15 +1,8 @@
 <x-admin.master>
     @section('content')
 
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @elseif (session('fail'))
-            <div class="alert alert-danger">
-                {{ session('fail') }}
-            </div>
-        @endif
+        @include('admin.partials.message')
+
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -73,7 +66,7 @@
                 </div>
             </div>
         </div>
-        
+
         {{-- <div class="d-flex">
             <div class="mx-auto">{{ $posts->links() }}</div>
         </div> --}}

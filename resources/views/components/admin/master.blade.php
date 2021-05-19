@@ -20,6 +20,8 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet">
 
+    <!-- ToasTr styles -->
+    <link href="{{ asset('vendor/toastr/toastr.css') }}" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -62,6 +64,7 @@
             <x-admin.sidebar.posts-links />
             @if (auth()->user()->userHasRole('Admin'))
                 <x-admin.sidebar.users-links />
+                <x-admin.sidebar.authorization-links />
             @endif
 
             <!-- Nav Item - Utilities Collapse Menu -->
@@ -359,6 +362,12 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin-2.js') }}"></script>
+
+    <!-- ToasTr scripts for all pages-->
+    <script src="{{ asset('vendor/toastr/toastr.js') }}"></script>
+
+
+    @include('admin.partials.toastr')
 
     @yield('scripts')
 
